@@ -1,13 +1,40 @@
-var redis = require('redis');
+var client = require('redis').createClient();
 
-exports.addUser= function(){
-	var client = redis.createClient();
-	client.on("error",function(err){
-		console.log('Error'+ err);
-	});
-	client.select(1);
-	return 0;
-	/*client.sadd(set-key,item,function(err,reply){
-		console.log(reply);
-	});*/
+client.on("error", function (err) {
+    console.error(err);
+});
+
+exports.addUser= function(callback){
+    client.select(1, function (err) {
+        if (err) {
+            return callback(err);
+        }
+
+        client.sadd('users', 'naveen', function (err,reply) {
+            if (err) {
+                return callback(err);
+            }
+            
+            callback(null, reply);
+
+        });
+    });
+}
+
+
+exports.remUser= function(callback){
+    client.select(1, function (err) {
+        if (err) {
+            return callback(err);
+        }
+
+        client.srem('users', 'naveen', function (err,reply) {
+            if (err) {
+                return callback(err);
+            }
+
+            callback(null, reply);
+
+        });
+    });
 }
