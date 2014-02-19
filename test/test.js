@@ -15,8 +15,35 @@ describe('COREAPI Testing', function (){
     });
     describe('Testing Adding expenses ',function(){
         it('should return 1 if added successfully',function(done){
+                core.addExpense("expense_1","amount",100,function(err,result){
+                assert.equal(result,1);
+                done(); 
+            });
+        });
+        it('should return 1 if added successfully',function(done){
+                core.addExpense("expense_1","description",100,function(err,result){
+                assert.equal(result,1);
+                done(); 
+            });
+        });
+        it('should return 1 if added successfully',function(done){
+                core.addExpense("expense_1","paidBy",100,function(err,result){
+                assert.equal(result,1);
+                done(); 
+            });
+        });
+        it('should return 1 if added successfully',function(done){
             var date = new Date();
-            core.addExpense("expense_1",100,"Breakfast","karthic",date.toString(),function(err,result){
+            core.addExpense("expense_1","date",date.toString(),function(err,result){
+                assert.equal(result,1);
+                done(); 
+            });
+        });
+    });
+    describe('Testing Deleting expenses ',function(){
+        it('should return 1 if the expense is deleted successfully',function(done){
+            
+            core.remExpense("expense_1",function(err,result){
                 if(err)
                     return done(err);
                 assert.equal(result,1);

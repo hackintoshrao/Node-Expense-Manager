@@ -38,3 +38,57 @@ exports.remUser= function(setkey,value,callback){
         });
     });
 }
+
+exports.addExpense = function(hashId,hashKey,hashValue,callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.hset(hashId,hashKey,hashValue,function(err,reply){
+            if(err){
+                return callback(err);
+            }
+            callback(null,reply);
+        });
+    });
+}
+
+exports.remExpense = function(hashId,callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.hdel(hashId,"amount",function(err,reply){
+            if(err){
+                return callback(err);
+            }
+            callback(null,reply);
+        });
+        client.hdel(hashId,"description",function(err,reply){
+            if(err){
+                return callback(err);
+            }
+            callback(null,reply);
+        });
+        client.hdel(hashId,"paidBy",function(err,reply){
+            if(err){
+                return callback(err);
+            }
+            callback(null,reply);
+        });
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
