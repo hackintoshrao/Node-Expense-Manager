@@ -3,14 +3,14 @@ var client = require('redis').createClient();
 client.on("error", function (err) {
     console.error(err);
 });
-
-exports.addUser= function(callback){
+/*API to add a participant*/
+exports.addUser= function(setkey,value,callback){
     client.select(1, function (err) {
         if (err) {
             return callback(err);
         }
 
-        client.sadd('users', 'naveen', function (err,reply) {
+        client.sadd(setkey, value, function (err,reply) {
             if (err) {
                 return callback(err);
             }
@@ -21,14 +21,14 @@ exports.addUser= function(callback){
     });
 }
 
-
-exports.remUser= function(callback){
+/*API to remove a participant */
+exports.remUser= function(setkey,value,callback){
     client.select(1, function (err) {
         if (err) {
             return callback(err);
         }
 
-        client.srem('users', 'naveen', function (err,reply) {
+        client.srem(setkey,value, function (err,reply) {
             if (err) {
                 return callback(err);
             }
