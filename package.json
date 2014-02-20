@@ -12,6 +12,7 @@
     "hiredis":"*",
     "redis":"*",
     "socket.io":"*",
-    "assert":"*"
+    "assert":"*",
+    "async":"*"
   }
 }
