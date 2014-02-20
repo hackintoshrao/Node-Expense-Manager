@@ -9,6 +9,7 @@
     "express": "3.1.0",
     "jade": "*",
     "mocha":"*",
+    "hiredis":"*",
     "redis":"*",
     "socket.io":"*",
     "assert":"*"
