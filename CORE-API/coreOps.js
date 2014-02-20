@@ -77,10 +77,38 @@ exports.readExpense = function(hashId,callback){
             if(err)
                 return callback(err);
             console.log(reply);
-            callback(null,reply)
+            callback(null,reply);
         });
     });
 }
+
+exports.set_no_of_expenses = function(callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.incr("totalNoOfExpenses",function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
+
+
+exports.del_no_of_expenses = function(callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.del("totalNoOfExpenses",function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
+
 
 
 

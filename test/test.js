@@ -14,6 +14,28 @@ describe('COREAPI Testing', function (){
         });
     });
 
+    describe('Setting and incrementing the Redis String containing no.of.expenses and testing it and deleting the string with the second test ', function (){
+        it('should return 1 on setting and incrementing the string', function(done) {
+
+            core.set_no_of_expenses(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 1);
+                done();
+            });
+        });
+         it('should return 1 on setting and incrementing the string', function(done) {
+
+            core.del_no_of_expenses(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 1);
+                done();
+            });
+        });
+    });
+
+
 
     describe('Testing Adding expenses ',function(){
         it('should return 1 if added successfully',function(done){
