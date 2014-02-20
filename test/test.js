@@ -14,17 +14,37 @@ describe('COREAPI Testing', function (){
         });
     });
 
-    describe('Setting and incrementing the Redis String containing no.of.expenses and testing it and deleting the string with the second test ', function (){
+
+
+    describe('Setting and incrementing the Redis String containing no.of.expenses and testing it and deleting the string with the last test i nthe group ', function (){
         it('should return 1 on setting and incrementing the string', function(done) {
 
-            core.set_no_of_expenses(function (err, result) {
+            core.incr_no_of_expenses(function (err, result) {
                 if(err)
                     return done(err);
                 assert.equal(result, 1);
                 done();
             });
         });
-         it('should return 1 on setting and incrementing the string', function(done) {
+        it('should return 2 on  incrementing the string again', function(done) {
+
+            core.incr_no_of_expenses(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 2);
+                done();
+            });
+        });
+        it('should return 1 on decrementing the string', function(done) {
+
+            core.decr_no_of_expenses(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 1);
+                done();
+            });
+        });
+        it('should return 1 on deleting the string', function(done) {
 
             core.del_no_of_expenses(function (err, result) {
                 if(err)
