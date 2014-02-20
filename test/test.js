@@ -1,6 +1,6 @@
 var assert = require("assert");
 var core=require("../CORE-API/coreOps.js");
-/* */
+/*Testing asynchronous code is trickier , mocha's done() method makes it simpler  */
 describe('COREAPI Testing', function (){
     describe('addUser', function (){
         it('should return 1 if the user is added successfully', function(done) {
@@ -13,6 +13,8 @@ describe('COREAPI Testing', function (){
             });
         });
     });
+
+
     describe('Testing Adding expenses ',function(){
         it('should return 1 if added successfully',function(done){
                 core.addExpense("expense_1","amount",100,function(err,result){
@@ -21,13 +23,13 @@ describe('COREAPI Testing', function (){
             });
         });
         it('should return 1 if added successfully',function(done){
-                core.addExpense("expense_1","description",100,function(err,result){
+                core.addExpense("expense_1","description","Breakfast",function(err,result){
                 assert.equal(result,1);
                 done(); 
             });
         });
         it('should return 1 if added successfully',function(done){
-                core.addExpense("expense_1","paidBy",100,function(err,result){
+                core.addExpense("expense_1","paidBy","karthic",function(err,result){
                 assert.equal(result,1);
                 done(); 
             });
@@ -40,6 +42,21 @@ describe('COREAPI Testing', function (){
             });
         });
     });
+
+
+
+    
+    describe('Testing read expenses',function(){
+        it('should return an object containing hash(key/value pairs) ',function(done){
+            core.readExpense("expense_1",function(err,result){
+                assert.equal(result.amount,100);
+                assert.equal(result.paidBy,"karthic");
+                assert.equal(result.description,"Breakfast");
+                done();
+            });
+        });
+    });
+
 
 
 

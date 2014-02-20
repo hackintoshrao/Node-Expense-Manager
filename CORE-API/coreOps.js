@@ -69,6 +69,19 @@ exports.remExpense = function(hashId,key,callback){
 }
 
 
+exports.readExpense = function(hashId,callback){
+    client.select(1,function(err){
+        if(err)
+            return callback(err);
+        client.hgetall(hashId,function(err,reply){
+            if(err)
+                return callback(err);
+            console.log(reply);
+            callback(null,reply)
+        });
+    });
+}
+
 
 
 
