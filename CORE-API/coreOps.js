@@ -53,29 +53,18 @@ exports.addExpense = function(hashId,hashKey,hashValue,callback){
     });
 }
 
-exports.remExpense = function(hashId,callback){
+exports.remExpense = function(hashId,key,callback){
     client.select(1,function(err){
         if(err){
             return callback(err);
         }
-        client.hdel(hashId,"amount",function(err,reply){
+        client.hdel(hashId,key,function(err,reply){
             if(err){
                 return callback(err);
             }
             callback(null,reply);
         });
-        client.hdel(hashId,"description",function(err,reply){
-            if(err){
-                return callback(err);
-            }
-            callback(null,reply);
-        });
-        client.hdel(hashId,"paidBy",function(err,reply){
-            if(err){
-                return callback(err);
-            }
-            callback(null,reply);
-        });
+       
     });
 }
 

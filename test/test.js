@@ -40,16 +40,38 @@ describe('COREAPI Testing', function (){
             });
         });
     });
+
+
+
     describe('Testing Deleting expenses ',function(){
-        it('should return 1 if the expense is deleted successfully',function(done){
-            
-            core.remExpense("expense_1",function(err,result){
-                if(err)
-                    return done(err);
+        it('should return 1 if deleted successfully',function(done){
+                core.remExpense("expense_1","amount",function(err,result){
                 assert.equal(result,1);
+                done(); 
+            });
+        });
+        it('should return 1 if removed successfully',function(done){
+                core.remExpense("expense_1","description",function(err,result){
+                assert.equal(result,1);
+                done(); 
+            });
+        });
+        it('should return 1 if removed successfully',function(done){
+                core.remExpense("expense_1","paidBy",function(err,result){
+                assert.equal(result,1);
+                done(); 
+            });
+        });
+        it('should return 1 if removed successfully',function(done){
+            var date = new Date();
+            core.remExpense("expense_1","date",function(err,result){
+                assert.equal(result,1);
+                done(); 
             });
         });
     });
+
+
   describe('remUser', function (){
         it('should return 1 if the user is removed successfully', function(done) {
 
