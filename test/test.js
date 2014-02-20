@@ -35,6 +35,16 @@ describe('COREAPI Testing', function (){
                 done();
             });
         });
+        it('should return 2 on  reading the string again', function(done) {
+
+            core.get_no_of_expenses(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 2);
+                done();
+            });
+        });
+        
         it('should return 1 on decrementing the string', function(done) {
 
             core.decr_no_of_expenses(function (err, result) {

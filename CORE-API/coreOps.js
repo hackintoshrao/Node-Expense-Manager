@@ -106,6 +106,18 @@ exports.decr_no_of_expenses = function(callback){
         });
     });
 }
+exports.get_no_of_expenses = function(callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.get("totalNoOfExpenses",function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
 
 
 exports.del_no_of_expenses = function(callback){
