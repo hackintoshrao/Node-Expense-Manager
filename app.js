@@ -8,8 +8,8 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , listExpenses = require('./routes/expenses.js')
-  , test = require('dump.js');
+  , expenses = require('./routes/expenses.js');
+  
 
 var app = express();
 
@@ -28,11 +28,14 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-
+expenses.dump();
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/expenses',listExpenses.expenses);
-
+app.get('/expenses',function(req,res){
+    expenses.populateExpenses(function(err,reply){
+    res.send(reply);
+    });
+});
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

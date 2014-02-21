@@ -1,7 +1,27 @@
 var core = require('../CORE-API/coreOps.js');
 var async = require('async');
+exports.dump = function(){
+	 core.incr_no_of_expenses(function (err, result) {
+                if(err)
+                    return done(err);
+                
+     });
+	core.addExpense("expense_1","amount",100,function(err,result){
+                
+    });
 
-exports.populateExpenses = function(req,res,callback_test){
+	core.addExpense("expense_1","description","Breakfast",function(err,result){
+    });
+	core.addExpense("expense_1","paidBy","karthic",function(err,result){
+    });
+	var date = new Date();
+    core.addExpense("expense_1","date",date.toString(),function(err,result){
+                
+    });
+}
+
+
+exports.populateExpenses = function(callback_test){
 	var no_of_expenses;
 	core.get_no_of_expenses(function(err,result){
 		if(err)
@@ -33,7 +53,7 @@ exports.populateExpenses = function(req,res,callback_test){
 					callback_test(null,result);
 				}
 
-				)
+			)
 		}
 
 	});

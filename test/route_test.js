@@ -42,7 +42,7 @@ describe("Testing the List expense API under /expense,Testing /expense by increm
 	
 	describe("Testing the Expenses API after inserting data",function(){
 		it("should have right key value pairs after inserting ",function(done){
-			expense.populateExpenses(null,null,function(err,result){
+			expense.populateExpenses(function(err,result){
 				assert(result[0].amount,100);
 				assert(result[0].description,"Breakfast");
 				assert(result[0].paidBy,"karthic");
