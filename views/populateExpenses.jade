@@ -1,0 +1,21 @@
+extends layout 
+block content 
+  div.table-reponsive
+    table.table.table-bordered(background="/images/wood1.jpg")
+      caption expenses...
+        tr
+          th Amount 
+          th Why???
+          th paidBy
+          th when??
+          if info.length
+            each field in info
+              tr
+                td
+                  font(color="#D66700") #{field.amount}
+                td 
+                  font(color="#007F43") #{field.description}
+                td 
+                  font(color="#780069") #{field.paidBy}
+                td 
+                  font(color="#002D77") #{field.date} 

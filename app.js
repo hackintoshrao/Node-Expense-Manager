@@ -34,7 +34,10 @@ app.get('/users', user.list);
 app.get('/expenses',function(req,res){
     expenses.populateExpenses(function(err,reply,no_of_expenses){
     console.log("total:"+ no_of_expenses);
-    res.send(reply);
+    res.render('populateExpenses',{info:reply},function(err,gen_html){
+      console.log(gen_html);
+      res.end(gen_html);
+    });
 
     });
 });
