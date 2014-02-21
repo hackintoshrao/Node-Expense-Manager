@@ -32,8 +32,10 @@ expenses.dump();
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/expenses',function(req,res){
-    expenses.populateExpenses(function(err,reply){
+    expenses.populateExpenses(function(err,reply,no_of_expenses){
+    console.log("total:"+ no_of_expenses);
     res.send(reply);
+
     });
 });
 http.createServer(app).listen(app.get('port'), function(){

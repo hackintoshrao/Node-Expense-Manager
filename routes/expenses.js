@@ -1,12 +1,11 @@
 var core = require('../CORE-API/coreOps.js');
 var async = require('async');
 exports.dump = function(){
-	 core.incr_no_of_expenses(function (err, result) {
-                if(err)
-                    return done(err);
+	 /*core.incr_no_of_expenses(function (err, result) {
                 
-     });
-	core.addExpense("expense_1","amount",100,function(err,result){
+     });*/
+
+	/*core.addExpense("expense_1","amount",100,function(err,result){
                 
     });
 
@@ -18,6 +17,21 @@ exports.dump = function(){
     core.addExpense("expense_1","date",date.toString(),function(err,result){
                 
     });
+     core.incr_no_of_expenses(function (err, result) {
+                
+     });
+     core.addExpense("expense_2","amount",200,function(err,result){
+                
+    });
+
+	core.addExpense("expense_2","description","Beer",function(err,result){
+    });
+	core.addExpense("expense_2","paidBy","Iyer",function(err,result){
+    });
+	var date = new Date();
+    core.addExpense("expense_2","date",date.toString(),function(err,result){
+                
+    });*/
 }
 
 
@@ -38,8 +52,11 @@ exports.populateExpenses = function(callback_test){
 		
 		if(no_of_expenses){
 			var functions_to_call_in_sequence = new Array();
-			for(var i=1;i<=no_of_expenses;i++)
+			for(var i=1;i<=no_of_expenses;i++){
+				console.log(i);
 				functions_to_call_in_sequence.push(makeCallBack("expense_"+i));
+
+			}
 			
 			async.series(
 				functions_to_call_in_sequence,
@@ -50,7 +67,7 @@ exports.populateExpenses = function(callback_test){
 						return;
 					}
 					
-					callback_test(null,result);
+					callback_test(null,result,no_of_expenses);
 				}
 
 			)
