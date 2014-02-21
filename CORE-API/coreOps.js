@@ -76,7 +76,7 @@ exports.readExpense = function(hashId,callback){
         client.hgetall(hashId,function(err,reply){
             if(err)
                 return callback(err);
-            console.log(reply);
+           
             callback(null,reply);
         });
     });

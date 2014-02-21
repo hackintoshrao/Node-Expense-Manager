@@ -132,8 +132,7 @@ describe('COREAPI Testing', function (){
             });
         });
         it('should return 1 if removed successfully',function(done){
-            var date = new Date();
-            core.remExpense("expense_1","date",function(err,result){
+                core.remExpense("expense_1","date",function(err,result){
                 assert.equal(result,1);
                 done(); 
             });
