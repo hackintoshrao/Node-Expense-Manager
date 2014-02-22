@@ -8,8 +8,8 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , expenses = require('./routes/expenses.js');
-  
+  , modal = require('./routes/modal');
+
 
 var app = express();
 
@@ -28,28 +28,11 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-expenses.dump();
+
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/expenses',function(req,res){
-    expenses.populateExpenses(function(err,reply,no_of_expenses){
-    console.log("total:"+ no_of_expenses);
-    res.render('populateExpenses',{info:reply},function(err,gen_html){
-      console.log(gen_html);
-      res.end(gen_html);
-    });
+app.get('/modal',modal.modal);
 
-    });
-});
-app.get('/modal',function(req,res){
-    
-    res.render('modal',function(err,gen_html){
-      console.log(gen_html);
-      res.end(gen_html);
-    });
-
-   
-});
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
