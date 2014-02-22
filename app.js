@@ -8,7 +8,8 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , expenses = require('./routes/expenses.js');
+  , expenses = require('./routes/expenses.js')
+  , modal = require('./routes/modal');
   
 
 var app = express();
@@ -19,6 +20,11 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
+  app.use(express.cookieParser());
+  app.use(express.session({secret:"asdrfsjfsdjfssdfsdf"}));
+  app.use(function(req,res,next){
+      next();
+  });
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -29,8 +35,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 expenses.dump();
-app.get('/', routes.index);
-app.get('/users', user.list);
+
 app.get('/expenses',function(req,res){
     expenses.populateExpenses(function(err,reply,no_of_expenses){
     console.log("total:"+ no_of_expenses);
@@ -41,15 +46,12 @@ app.get('/expenses',function(req,res){
 
     });
 });
-app.get('/modal',function(req,res){
-    
-    res.render('modal',function(err,gen_html){
-      console.log(gen_html);
-      res.end(gen_html);
-    });
+app.get('/', routes.index);
+app.get('/users', user.list);
+app.get('/modal',modal.showModal);
+app.post('/modal',modal.getModalData);
 
-   
-});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

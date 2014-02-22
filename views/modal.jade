@@ -1,18 +1,22 @@
 extends layout
 
 block content
-  div.modal.fade
+  div.modal.fade#mymodal
     div.modal-dialog
-      
-
-
-
-
-
-
-
-
-
-
-
-
+      div.modal-content(style="background-image: url(/img/image2c.jpg);")
+        div.modal-header
+          button(type="button",class="close",data-dismiss="modal",aria-hidden="true") &times;
+          h4.modal-title 
+            span.dance(style="font-size: 20px;font-weight: bold;color:blue;animation:anime 2s;") W
+            |elcome Roomie
+        div.modal-body
+          img(src="/img/image5.jpg",style="float:right;height:200px;width:220px;margin-top:10px;")
+          form.well#myform(role="form",action="/modal",method="post",style="background:url(/img/image4.jpg);")
+            label(for="roomiename") WhoAmI:
+            input.span3#roomiename(type="text",name="roomie") 
+            label(for="email") Email:
+            input.span3#email(type="text",name="mail") 
+            label
+            div(class="col-sm-offset-100 col-sm-100",style="margin-left:25px;margin-top:20px;")
+              input#save(type="submit",class="btn btn-primary",name="submit") Save 
+              input#close(type="button",class="btn btn-default",data-dismiss="modal",name="end",value="Close",style="margin-left:70px;")  

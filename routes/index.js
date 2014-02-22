@@ -4,5 +4,8 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+        if(!req.session.name)
+  			res.redirect("modal/");
+  		else
+  			res.render('home');
 };
