@@ -10,12 +10,12 @@ block content
             span.dance(style="font-size: 20px;font-weight: bold;color:blue;animation: anime 2s;") W
             |elcome Roomie
         div.modal-body
-          img(src="/images/image5.jpg",style="float:right;height:200px;width:220px;margin-top:10px")
-          form.well(role="form", style="background:url(/images/image4.jpg);")
+          img(src="/images/image5.jpg",style="float:right;height:200px;width:220px;margin-top:10px;")
+          form.well#myform(role="form", style="background:url(/images/image4.jpg);")
             label(for="roomiename") WhoAmI:
-            input.span3#roomiename(type="text",data-validation="length",data-validation-length="min4") 
+            input.span3#roomiename(type="text",name="roomie") 
             label(for="email") Email:
-            input.span3#email(type="text",data-validation="Email") 
+            input.span3#email(type="text",name="mail") 
             label
             div(class="col-sm-offset-100 col-sm-100",style="margin-left:25px;margin-top:20px;")
               input#save(type="submit",class="btn btn-primary",name="submit") Save 
