@@ -22,8 +22,8 @@ exports.initialize = function(server){
 	 			message.type = "myMessage";
 	 			socket.send(JSON.stringify(message)); 
 	 		}
-	 	});
-	 	socket.on("enter_user",function(){
+	 	  });
+	 	  socket.on("enter_user",function(){
 	 		var welcome = {
 			message:'Entered the Roomies Chatroom',
 			type:'serverMessage',
@@ -32,6 +32,11 @@ exports.initialize = function(server){
 			console.log(name);
 			socket.emit("user_entered",{uname:name});
 			socket.broadcast.send(JSON.stringify(welcome));
+	 	});
+	 	  socket.on("expense_entered",function(data){
+	 		console.log(data);
+	 		socket.emit("transaction_ack",data);
+
 	 	});
 	 });
 }

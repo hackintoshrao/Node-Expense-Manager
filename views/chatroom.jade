@@ -8,7 +8,7 @@ block content
     div.navbar.navbar-fixed-bottom  
       footer.footer
         form(role="form")
-          input.span12#shareMessage(type="text",placeholder="Share with roomies",style="height:30px;margin-top:10px;margin-left:10px;")
+          input.span12#shareMessage(type="text",placeholder="Share with roomies",style="height:30px;margin-top:10px;margin-left:10px;",data-provide="typeahead",data-items="2",data-source=["Rs:","PaidBy:","For:"],auto-complete="off")
           button#shareButton(type="button",class="btn btn-primary",style="margin-left:20px;margin-top:1px") Share&yen;
   script(src="/javascripts/chat.js")     
   script(src="/socket.io/socket.io.js")
