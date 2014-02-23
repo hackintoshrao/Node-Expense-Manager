@@ -13,12 +13,15 @@ html.wf-arvo-n7-active.wf-andika-n4-active.wf-active.wf-arvo-i4-active.wf-arvo-i
     link(href='/stylesheets/bootstrap-responsive.css', rel='stylesheet')
     link(href='/stylesheets/styles.css', rel='stylesheet')
     link(rel='stylesheet', href='http://use.edgefonts.net/c/8869a1/andika:n4.WWQ:N:2/d')
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/bootstrap.js')
     script#twitter-wjs(src='//platform.twitter.com/widgets.js')
     script(src='http://use.edgefonts.net/andika.js')
     link(rel='stylesheet', href='http://use.edgefonts.net/c/df4b2e/arvo:i4:i7:n4:n7.WXF:N:2,WXC:N:2,WXB:N:2,WXD:N:2/d')
     script(src='http://use.edgefonts.net/arvo.js')
+    script $(document).ready(function(){$('#roomielink').attr('href',"http://"+location.host+'/roomies');$('#expenselink').attr('href',"http://" + location.host +'/expenses');});
+    script $(document).ready(function(){$('#settlelink').attr('href',"http://"+location.host+'/settlement');$('#aboutlink').attr('href',"http://"+location.host+'/about');});
     script(type='text/javascript', src='/socket.io/socket.io.js')
-    script
   body(data-twttr-rendered='true')
     .header
       div
@@ -29,18 +32,18 @@ html.wf-arvo-n7-active.wf-andika-n4-active.wf-active.wf-arvo-i4-active.wf-arvo-i
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-              a.brand(href='roomies/') Roomies
+              a.brand#roomielink Roomies
               .nav-collapse.collapse
                 ul.nav
                   li.add-menu
-                    a(href='expenses') Expenses
+                    a#expenselink Expenses
                   li.add-menu
-                    a(href='settlement')
+                    a#settlelink
                       i.icon-edit.icon-white
                       | Settlement
                 ul.nav.pull-right
                   li.about-menu
-                    a(href='about/') About
+                    a#aboutlink About
                   li.dropdown
                     a.dropdown-toggle(href='#', data-toggle='dropdown')
                       | Resources
@@ -53,7 +56,7 @@ html.wf-arvo-n7-active.wf-andika-n4-active.wf-active.wf-arvo-i4-active.wf-arvo-i
                       li
                         a(href='http://nodejs.org/', target='_blank') Node.JS
                       li
-                        a(href='http://expressjs.com/mongodb', target='_blank') Express
+                        a(href='http://expressjs.com/', target='_blank') Express
                       li.divider
                       li.nav-header This App
                       li
@@ -62,6 +65,5 @@ html.wf-arvo-n7-active.wf-andika-n4-active.wf-active.wf-arvo-i4-active.wf-arvo-i
                         a(href='http://hackintoshrao.com', target='_blank') Author's Blog
               //
   block content              /.nav-collapse 
-    script(src='/javascripts/jquery.js')
-    script(src='/javascripts/bootstrap.js')
+   
   

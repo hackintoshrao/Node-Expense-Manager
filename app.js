@@ -10,7 +10,9 @@ var express = require('express')
   , path = require('path')
   , expenses = require('./routes/expenses.js')
   , modal = require('./routes/modal')
-  , chatroom = require('./routes/chatroom');
+  , chatroom = require('./routes/chatroom')
+  , settle = require('./routes/settlement.js')
+  , info = require('./routes/about');
   
 
 var app = express();
@@ -52,6 +54,8 @@ app.get('/users', user.list);
 app.get('/modal',modal.showModal);
 app.post('/modal',modal.getModalData);
 app.get('/roomies',chatroom.room);
+app.get('/settlement',settle.settleExpense);
+app.get('/about',info.about);
 
 
 http.createServer(app).listen(app.get('port'), function(){
