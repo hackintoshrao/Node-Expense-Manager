@@ -8,6 +8,7 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
+  , io_init = require('socket.io')
   , expenses = require('./routes/expenses.js')
   , modal = require('./routes/modal')
   , chatroom = require('./routes/chatroom')
@@ -53,11 +54,19 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/modal',modal.showModal);
 app.post('/modal',modal.getModalData);
-app.get('/roomies',chatroom.room);
+app.get('/roomies',chatroom.renderroom);
+    
+
+
 app.get('/settlement',settle.settleExpense);
 app.get('/about',info.about);
 
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+chatroom.initialize(server);
+
+
+
+
