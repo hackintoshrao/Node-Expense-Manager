@@ -1,0 +1,67 @@
+html.wf-arvo-n7-active.wf-andika-n4-active.wf-active.wf-arvo-i4-active.wf-arvo-i7-active.wf-arvo-n4-active(lang='en')
+  head
+    meta(charset='utf-8')
+    title Roomies
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='..//stylesheets/bootstrap.css', rel='stylesheet')
+    style
+      body {
+      padding-top: 60px;
+      }
+    link(href='/stylesheets/bootstrap-responsive.css', rel='stylesheet')
+    link(href='/stylesheets/styles.css', rel='stylesheet')
+    link(rel='stylesheet', href='http://use.edgefonts.net/c/8869a1/andika:n4.WWQ:N:2/d')
+    script#twitter-wjs(src='//platform.twitter.com/widgets.js')
+    script(src='http://use.edgefonts.net/andika.js')
+    link(rel='stylesheet', href='http://use.edgefonts.net/c/df4b2e/arvo:i4:i7:n4:n7.WXF:N:2,WXC:N:2,WXB:N:2,WXD:N:2/d')
+    script(src='http://use.edgefonts.net/arvo.js')
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+    script
+  body(data-twttr-rendered='true')
+    .header
+      div
+        .navbar.navbar-inverse.navbar-fixed-top(style='z-index: 10;')
+          .navbar-inner
+            .container
+              a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.brand(href='roomies/') Roomies
+              .nav-collapse.collapse
+                ul.nav
+                  li.add-menu
+                    a(href='expenses') Expenses
+                  li.add-menu
+                    a(href='settlement')
+                      i.icon-edit.icon-white
+                      | Settlement
+                ul.nav.pull-right
+                  li.about-menu
+                    a(href='about/') About
+                  li.dropdown
+                    a.dropdown-toggle(href='#', data-toggle='dropdown')
+                      | Resources
+                      b.caret
+                    ul.dropdown-menu
+                      li
+                        a(href='https://www.facebook.com/hackintoshrao.linux', target='_blank') Blogs Fb Page
+                      li
+                        a(href='http://facebook.com/karthick.rao1/', target='_blank') Fb Profile
+                      li
+                        a(href='http://nodejs.org/', target='_blank') Node.JS
+                      li
+                        a(href='http://expressjs.com/mongodb', target='_blank') Express
+                      li.divider
+                      li.nav-header This App
+                      li
+                        a(href='https://github.com/Karthic-Hackintosh/Node-Expense-Manager', target='_blank') GitHub Repository
+                      li
+                        a(href='http://hackintoshrao.com', target='_blank') Author's Blog
+              //
+  block content              /.nav-collapse 
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/bootstrap.js')
+  
