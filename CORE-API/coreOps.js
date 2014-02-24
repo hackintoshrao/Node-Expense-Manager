@@ -159,6 +159,17 @@ exports.incr_no_of_users = function(callback){
         });
     });
 }
+exports.set_no_of_users = function(num,callback){
+    client.select(1,function(err){
+        if(err)
+            return callback(err);
+        client.set("no_of_users",num,function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
 exports.decr_no_of_users = function(callback){
     client.select(1,function(err){
         if(err){

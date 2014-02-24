@@ -126,13 +126,41 @@ describe('COREAPI Testing', function (){
                 done();
             });
         });
+        it('should set the string to 3 ', function(done) {
+
+            core.set_no_of_users(3,function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, "OK");
+                done();
+            });
+        });
+        it('should return 3 on  reading the string again', function(done) {
+
+            core.get_no_of_users(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 3);
+                done();
+            });
+        });
         
-        it('should return 1 on decrementing the string', function(done) {
+         it('should get the string with value 3 ', function(done) {
+
+            core.get_no_of_users(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 3);
+                done();
+            });
+        });
+        
+        it('should return 2 on decrementing the string', function(done) {
 
             core.decr_no_of_users(function (err, result) {
                 if(err)
                     return done(err);
-                assert.equal(result, 1);
+                assert.equal(result, 2);
                 done();
             });
         });
