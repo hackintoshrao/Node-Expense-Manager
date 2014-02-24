@@ -7,5 +7,5 @@ exports.index = function(req, res){
         if(!req.session.name)
   			res.redirect("modal/");
   		else
-  			res.render('home');
+  			res.render('home',{name:req.session.name});
 };

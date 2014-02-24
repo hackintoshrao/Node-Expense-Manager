@@ -18,7 +18,10 @@ socket.on("message",function(data){
 });
 
 socket.on("transaction_ack",function(data){
-	$('#sentMessage').append('<div class="alert alert-warning">' +'<pre>'+"Expenditure Rs."+data.amount+" incurred and is paidBy Roomie "+'<b>'+data.paidBy+'</b>'+" for "+data.description+  '</pre>' +'Expense Alert by ' + data.name + '</div>');
+	if(data.amount==="invalid")
+		$('#sentMessage').append('<div class="alert alert-danger">' +'<pre>'+"Invalid Roomie!!"+'<b>'+data.paidBy+'</b>'+"is not among the roomies!:P"+  '</pre>' +'Expense Alert by ' + data.name + '</div>');
+	else
+		$('#sentMessage').append('<div class="alert alert-warning">' +'<pre>'+"Expenditure Rs."+data.amount+" incurred and is paidBy Roomie "+'<b>'+data.paidBy+'</b>'+" for "+data.description+  '</pre>' +'Expense Alert by ' + data.name + '</div>');
 });
 $(document).ready(function(){
 	socket.emit("enter_user");

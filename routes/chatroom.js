@@ -1,4 +1,5 @@
 var io = require('socket.io');
+var core = require("../CORE-API/coreOps.js");
 var name ; 
 exports.renderroom = function(req, res){
         if(!req.session.name)
@@ -35,7 +36,17 @@ exports.initialize = function(server){
 	 	});
 	 	  socket.on("expense_entered",function(data){
 	 		console.log(data);
-	 		socket.emit("transaction_ack",data);
+	 		core.isUser("users",data.paidBy,function(err,reply){
+	 			if(reply){
+	 				
+	 				socket.emit("transaction_ack",data);
+
+	 			}else{
+	 				data.amount="invalid";
+	 				socket.emit("transaction_ack",data);
+	 			}
+	 		});
+	 		
 
 	 	});
 	 });
