@@ -120,6 +120,7 @@ exports.decr_no_of_expenses = function(callback){
         });
     });
 }
+
 exports.get_no_of_expenses = function(callback){
     client.select(1,function(err){
         if(err){
@@ -140,6 +141,57 @@ exports.del_no_of_expenses = function(callback){
             return callback(err);
         }
         client.del("totalNoOfExpenses",function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
+exports.incr_no_of_users = function(callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.incr("no_of_users",function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
+exports.decr_no_of_users = function(callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.decr("no_of_users",function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
+
+exports.get_no_of_users = function(callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.get("no_of_users",function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+}
+
+
+exports.del_no_of_users = function(callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.del("no_of_users",function(err,reply){
             if(err)
                 return callback(err);
             callback(null,reply);
@@ -171,6 +223,17 @@ exports.delUserInfo = function(hashId,hashKey,callback){
             if(err){
                 return callback(err);
             }
+            callback(null,reply);
+        });
+    });
+}
+exports.getUserMail = function(hashId,hashKey,callback){
+    client.select(1,function(err){
+        if(err)
+            return callback(err);
+        client.hget(hashId,hashKey,function(err,reply){
+            if(err)
+                return callback(err);
             callback(null,reply);
         });
     });

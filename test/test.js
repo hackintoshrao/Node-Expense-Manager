@@ -29,15 +29,26 @@ describe('COREAPI Testing', function (){
 
 
 
-    describe('Testing Adding User Info <unsername>:<email> ',function(){
+    describe('Testing Adding User Info <username>:<email> ',function(){
         it('should return 1 if added User Info is added successfully ',function(done){
                 core.addUserInfo("userInfo","karthic","kartronics85@gmail.com",function(err,result){
+                if(err)
+                    return done(err);
                 assert.equal(result,1);
                 done(); 
             });
         });
     });
-
+    describe('Testing Fetching User MailId <username>:<email> ',function(){
+        it('should return mailId if MailId is fetched  successfully ',function(done){
+                core.getUserMail("userInfo","karthic",function(err,result){
+                if(err)
+                    return done(err);
+                assert.equal(result,"kartronics85@gmail.com");
+                done(); 
+            });
+        });
+    });
     describe('Setting and incrementing the Redis String containing no.of.expenses and testing it and deleting the string with the last test i nthe group ', function (){
         it('should return 1 on setting and incrementing the string', function(done) {
 
@@ -79,6 +90,55 @@ describe('COREAPI Testing', function (){
         it('should return 1 on deleting the string', function(done) {
 
             core.del_no_of_expenses(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 1);
+                done();
+            });
+        });
+    });
+
+    describe('Setting and incrementing the Redis String containing no.of.users and testing it and deleting the string with the last test in the group ', function (){
+        it('should return 1 on setting and incrementing the string', function(done) {
+
+            core.incr_no_of_users(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 1);
+                done();
+            });
+        });
+        it('should return 2 on  incrementing the string again', function(done) {
+
+            core.incr_no_of_users(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 2);
+                done();
+            });
+        });
+        it('should return 2 on  reading the string again', function(done) {
+
+            core.get_no_of_users(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 2);
+                done();
+            });
+        });
+        
+        it('should return 1 on decrementing the string', function(done) {
+
+            core.decr_no_of_users(function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 1);
+                done();
+            });
+        });
+        it('should return 1 on deleting the string', function(done) {
+
+            core.del_no_of_users(function (err, result) {
                 if(err)
                     return done(err);
                 assert.equal(result, 1);
@@ -175,7 +235,7 @@ describe('COREAPI Testing', function (){
     });
 
    describe('Testing Deleting User Info <username>:<email> ',function(){
-        it('should return 1 if added User Info is added successfully ',function(done){
+        it('should return 1 if  User Info is deleted successfully ',function(done){
                 core.delUserInfo("userInfo","karthic",function(err,result){
                 assert.equal(result,1);
                 done(); 
