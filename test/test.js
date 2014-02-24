@@ -15,6 +15,28 @@ describe('COREAPI Testing', function (){
     });
 
 
+    describe('IsUser API testing,Checking whether roomie is valid after login', function (){
+        it('should return 1 if the user is a valid User', function(done) {
+
+            core.isUser("users","karthic",function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result, 1);
+                done();
+            });
+        });
+    });
+
+
+
+    describe('Testing Adding User Info <unsername>:<email> ',function(){
+        it('should return 1 if added User Info is added successfully ',function(done){
+                core.addUserInfo("userInfo","karthic","kartronics85@gmail.com",function(err,result){
+                assert.equal(result,1);
+                done(); 
+            });
+        });
+    });
 
     describe('Setting and incrementing the Redis String containing no.of.expenses and testing it and deleting the string with the last test i nthe group ', function (){
         it('should return 1 on setting and incrementing the string', function(done) {
@@ -148,6 +170,15 @@ describe('COREAPI Testing', function (){
                 	return done(err);
                 assert.equal(result, 1);
                 done();
+            });
+        });
+    });
+
+   describe('Testing Deleting User Info <username>:<email> ',function(){
+        it('should return 1 if added User Info is added successfully ',function(done){
+                core.delUserInfo("userInfo","karthic",function(err,result){
+                assert.equal(result,1);
+                done(); 
             });
         });
     });

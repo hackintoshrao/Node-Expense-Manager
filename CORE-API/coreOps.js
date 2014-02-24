@@ -21,6 +21,20 @@ exports.addUser= function(setkey,value,callback){
     });
 }
 
+exports.isUser = function(setkey,value,callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.sismember(setkey,value,function(err,reply){
+            if(err)
+                return callback(err);
+            callback(null,reply);
+        });
+    });
+
+
+}
 /*API to remove a participant */
 exports.remUser= function(setkey,value,callback){
     client.select(1, function (err) {
@@ -133,7 +147,34 @@ exports.del_no_of_expenses = function(callback){
     });
 }
 
+exports.addUserInfo = function(hashId,hashKey,hashValue,callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.hset(hashId,hashKey,hashValue,function(err,reply){
+            if(err){
+                return callback(err);
+            }
+            callback(null,reply);
+        });
+    });
+}
 
+
+exports.delUserInfo = function(hashId,hashKey,callback){
+    client.select(1,function(err){
+        if(err){
+            return callback(err);
+        }
+        client.hdel(hashId,hashKey,function(err,reply){
+            if(err){
+                return callback(err);
+            }
+            callback(null,reply);
+        });
+    });
+}
 
 
 
