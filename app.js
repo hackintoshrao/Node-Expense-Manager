@@ -13,7 +13,8 @@ var express = require('express')
   , modal = require('./routes/modal')
   , chatroom = require('./routes/chatroom')
   , settle = require('./routes/settlement.js')
-  , info = require('./routes/about');
+  , info = require('./routes/about')
+  , initial_dump = require('./routes/initial_db_user_info_dump');
   
 
 var app = express();
@@ -38,7 +39,9 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-expenses.dump();
+
+initial_dump.initialize();
+
 
 app.get('/expenses',function(req,res){
     expenses.populateExpenses(function(err,reply,no_of_expenses){
