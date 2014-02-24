@@ -28,7 +28,7 @@ exports.initialize = function(){
   			});
   	}
   	for(var i=0;i<roomies_info.roomies.length;i++){
-  		core.addUserInfo("userInfo",roomies_info.roomies[i].username,roomies_info.roomies[i].email,function(err,result){
+  		core.addUserInfo("userInfo",roomies_info.roomies[i].username,roomies_info.roomies[i].mail,function(err,result){
   			if(err)
   				throw err;
   			else  			

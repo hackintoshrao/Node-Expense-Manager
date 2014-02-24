@@ -13,6 +13,7 @@ exports.getModalData = function(req,res){
 	core.isUser("users",req.body.roomie,function(err,result){
 		if(result){
 			core.getUserMail("userInfo",req.body.roomie,function(err,reply){
+				
 				if(req.body.mail===reply){
 					req.session.name = req.body.roomie;
 					res.redirect('/');
