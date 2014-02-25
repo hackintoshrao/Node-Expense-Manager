@@ -19,7 +19,7 @@ socket.on("message",function(data){
 
 socket.on("transaction_ack",function(data){
 	if(data.amount==="invalid")
-		$('#sentMessage').append('<div class="alert alert-danger">' +'<pre>'+"Invalid Roomie!!"+'<b>'+data.paidBy+'</b>'+"is not among the roomies!:P"+  '</pre>' +'Expense Alert by ' + data.name + '</div>');
+		$('#sentMessage').append('<div class="alert alert-danger">' +'<pre>'+"Invalid Roomie!!"+'<b>'+data.paidBy+'</b>'+" is not among the roomies!:P"+  '</pre>' +'Expense Alert by ' + data.name + '</div>');
 	else
 		$('#sentMessage').append('<div class="alert alert-warning">' +'<pre>'+"Expenditure Rs."+data.amount+" incurred and is paidBy Roomie "+'<b>'+data.paidBy+'</b>'+" for "+data.description+  '</pre>' +'Expense Alert by ' + data.name + '</div>');
 });
@@ -31,7 +31,7 @@ $(document).ready(function(){
 		console.log('Share Button Clicked');             
 		var chatstring = $('#shareMessage').val();
 		console.log(chatstring);		
-		var result=chatstring.search(/Rs{1}:[0-9]+\sPaid{1}By{1}:[a-zA-Z]{3,}\sFor:./i);
+		var result=chatstring.search(/Rs{1}:[0-9]+\sPaid{1}By{1}:[a-zA-Z]{2,}\sFor:./i);
 		if(result!==-1){
 			console.log("Patern Matched: "+chatstring);
 			var res=chatstring.split(" ");	
@@ -45,7 +45,7 @@ $(document).ready(function(){
 			var user=msg[1].split(":");
 			
 			var desc=msg[2].split(":");
-			
+			console.log(user[1]);
 			var transaction={
 			
 			amount:amt[1],

@@ -1,5 +1,6 @@
 var io = require('socket.io');
 var core = require("../CORE-API/coreOps.js");
+var transaction = require("../CORE-API/transaction.js");
 var name ; 
 exports.renderroom = function(req, res){
         if(!req.session.name)
@@ -37,11 +38,25 @@ exports.initialize = function(server){
 	 	  socket.on("expense_entered",function(data){
 	 		console.log(data);
 	 		core.isUser("users",data.paidBy,function(err,reply){
-	 			if(reply){
-	 				
+	 			console.log(data.paidBy+":Is a valid User");
+	 			if(reply){//PaidBy is valid 
+	 				var date = new Date();
 	 				socket.emit("transaction_ack",data);
+	 				transaction.transaction(data,function(err,sucess){
+	 					if(err)
+	 						throw err;
+	 					if(sucess)
+	 						console.log('Money to be paid by individual Roomies calculated ,transaction PART-1 sucessful');
 
-	 			}else{
+	 				});
+	 				transaction.add_expense_summary(data,function(err,success){
+	 					if(err)
+	 						throw err ; 
+	 					if(success)
+	 						console.log("transaction Part 2 sucess");
+	 				});
+
+	 			}else{ //If PaidBy is not valid
 	 				data.amount="invalid";
 	 				socket.emit("transaction_ack",data);
 	 			}

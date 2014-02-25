@@ -12,7 +12,7 @@ var express = require('express')
   , expenses = require('./routes/expenses.js')
   , modal = require('./routes/modal')
   , chatroom = require('./routes/chatroom')
-  , settle = require('./routes/settlement.js')
+  , settle_route = require('./routes/settlement.js')
   , info = require('./routes/about')
   , initial_dump = require('./routes/initial_db_user_info_dump');
   
@@ -42,16 +42,14 @@ app.configure('development', function(){
 
 initial_dump.initialize();
 
-
 app.get('/expenses',function(req,res){
+ 
     expenses.populateExpenses(function(err,reply,no_of_expenses){
     console.log("total:"+ no_of_expenses);
-    res.render('populateExpenses',{info:reply},function(err,gen_html){
-      console.log(gen_html);
-      res.end(gen_html);
+    res.render('populateExpenses',{info:reply});
+   
     });
 
-    });
 });
 app.get('/', routes.index);
 app.get('/users', user.list);
@@ -61,7 +59,7 @@ app.get('/roomies',chatroom.renderroom);
     
 
 
-app.get('/settlement',settle.settleExpense);
+app.get('/settlement',settle_route.settleExpense);
 app.get('/about',info.about);
 
 

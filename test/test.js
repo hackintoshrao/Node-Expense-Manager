@@ -2,7 +2,7 @@ var assert = require("assert");
 var core=require("../CORE-API/coreOps.js");
 /*Testing asynchronous code is trickier , mocha's done() method makes it simpler  */
 describe('COREAPI Testing', function (){
-    describe('addUser', function (){
+    describe('Testing User account operations addUser,check for valid Users,get USers and removing Users', function (){
         it('should return 1 if the user is added successfully', function(done) {
 
             core.addUser("users","karthic",function (err, result) {
@@ -12,11 +12,11 @@ describe('COREAPI Testing', function (){
                 done();
             });
         });
-    });
+    
 
 
-    describe('IsUser API testing,Checking whether roomie is valid after login', function (){
-        it('should return 1 if the user is a valid User', function(done) {
+    
+    it('should return 1 if the user is a valid User', function(done) {
 
             core.isUser("users","karthic",function (err, result) {
                 if(err)
@@ -24,9 +24,32 @@ describe('COREAPI Testing', function (){
                 assert.equal(result, 1);
                 done();
             });
-        });
-    });
+     });
+    
 
+    
+    it('Testing fetching all user names should return the users list if seccessful', function(done) {
+
+            core.getUsers("users",function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result[0], "karthic");
+                done();
+            });
+     });
+
+    it('should return 1 if the user deletion is successful', function(done) {
+
+            core.delUser("users","karthic",function (err, result) {
+                if(err)
+                    return done(err);
+                assert.equal(result,1);
+                done();
+            });
+     });
+
+ });   
+    
 
 
     describe('Testing Adding User Info <username>:<email> ',function(){
@@ -250,17 +273,6 @@ describe('COREAPI Testing', function (){
     });
 
 
-  describe('remUser', function (){
-        it('should return 1 if the user is removed successfully', function(done) {
-
-            core.remUser("users","karthic",function (err, result) {
-                if(err)
-                	return done(err);
-                assert.equal(result, 1);
-                done();
-            });
-        });
-    });
 
    describe('Testing Deleting User Info <username>:<email> ',function(){
         it('should return 1 if  User Info is deleted successfully ',function(done){

@@ -1,1 +1,12 @@
-extends pagelayout
+extends pagelayout 
+block content
+  
+  .container
+    .row-fluid
+      #tobesettled.span30 #{toSettle}
+    div.navbar.navbar-fixed-bottom  
+      footer.footer  
+        #buttonStrectch.span20
+          p
+            button.btn.btn-danger.btn-lg(type="button",style="margin-left:300px;margin-bottom:5px;width:100%;") Settle Expenses
+            button.btn.btn-success.btn-lg(style="margin-left:300px;margin-bottom:5px;width:100%;") Go To Home

@@ -1,10 +1,19 @@
 var core = require('../CORE-API/coreOps.js');
 var async = require('async');
-exports.dump = function(){
-	 /*core.incr_no_of_expenses(function (err, result) {
-                
-     });*/
-
+/*exports.dump = function(){
+	core.incr_no_of_expenses(function(err,result){
+		if(result){
+			core.get_no_of_expenses(function (err, result) {
+                console.log('total Expenses:'+result);
+                core.del_no_of_expenses(function(err,result){
+                	if(result)
+                		console.log("expnses no del: "+result);
+                });
+     });
+		}
+	});
+	 
+	
 	/*core.addExpense("expense_1","amount",100,function(err,result){
                 
     });
@@ -31,8 +40,8 @@ exports.dump = function(){
 	var date = new Date();
     core.addExpense("expense_2","date",date.toString(),function(err,result){
                 
-    });*/
-}
+    });
+}*/
 
 
 exports.populateExpenses = function(callback_test){
