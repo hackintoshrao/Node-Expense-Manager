@@ -87,6 +87,14 @@ exports.initialize = function(){
 							}
 						}
 					}
+					for(var i=0;i<roomies_info.roomies.length;i++){
+  						functions_to_call_in_sequence.push(add_user_hashes_CallBack(roomies_info.roomies[i].username,"name",roomies_info.roomies[i].username));
+						for(var j=0;j<roomies_info.roomies.length;j++){
+							if(i!==j){
+								functions_to_call_in_sequence.push(add_user_hashes_CallBack(roomies_info.roomies[i].username,roomies_info.roomies[j].username,0));
+							}
+						}
+					}
 
 					for(var j=0;j<roomies_info.roomies.length;j++){
 						

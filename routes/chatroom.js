@@ -6,6 +6,7 @@ exports.renderroom = function(req, res){
         if(!req.session.name)
   			res.redirect("modal/");
   		name = req.session.name;
+  		req.session.lastPage="";
   		res.render('chatroom');
 
 };
@@ -42,6 +43,7 @@ exports.initialize = function(server){
 	 			if(reply){//PaidBy is valid 
 	 				var date = new Date();
 	 				socket.emit("transaction_ack",data);
+	 				socket.broadcast.emit("transaction_ack",data);
 	 				transaction.transaction(data,function(err,sucess){
 	 					if(err)
 	 						throw err;
@@ -59,6 +61,7 @@ exports.initialize = function(server){
 	 			}else{ //If PaidBy is not valid
 	 				data.amount="invalid";
 	 				socket.emit("transaction_ack",data);
+	 				socket.broadcast.emit("transaction_ack",data);
 	 			}
 	 		});
 	 		

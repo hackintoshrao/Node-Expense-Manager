@@ -1,4 +1,5 @@
-			var core = require('./coreOps.js')			
+			var core = require('./coreOps.js');
+			var new_to_be_paid,neg_share ;			
 		     exports.transaction = function(data,callback){				
 			
 				core.getUsers("users",function(err,reply){
@@ -7,22 +8,39 @@
 	 					for(var i=0;i<reply.length;i++){
 	 						if(reply[i]===data.paidBy){
 	 							console.log("only once for: "+reply[i]);
-	 							for(var j=0;j<reply.length;j++){
-	 								if(reply[j]!==data.paidBy){
-	 									console.log(data.paidBy+":"+reply[j]+":"+share);
-	 									core.set_roomie_expense(data.paidBy,reply[j],share,function(err,reply){
-	 										if(reply)
-	 											console.log('Positive share added');
-	 									});
+	 							core.get_a_roomies_expense(data.paidBy,function(err,result){
+	 								if(err)
+	 									throw err;
+	 								for(var j=0;j<reply.length;j++){
+	 									if(reply[j]!==data.paidBy){
+	 										console.log("inside new Transaction:"+JSON.stringify(result));
+	 										
+	 										console.log("old_iyer:"+result["iyer"]+"replayer:"+result[reply[j].toString()]);
+	 										console.log("old_rao:"+result["rao"]+"replayer:"+result[reply[j].toString()]);
+	 										new_to_be_paid = parseInt(result[reply[j].toString()])+share;
+	 										console.log("new amount"+new_to_be_paid);
+	 										core.set_roomie_expense(data.paidBy,reply[j],new_to_be_paid,function(err,reply){
+	 											if(reply)
+	 												console.log('Positive share added');
+	 										});
+	 									}
 	 								}
-	 							}
-	 						}else{
-	 							var neg_share = share * -1;
-	 							console.log(reply[i]+":"+data.paidBy+":"+neg_share);
-	 							core.set_roomie_expense(reply[i],data.paidBy,neg_share,function(err,reply){
-	 								if(reply)
-	 									console.log('negative share added');
 	 							});
+	 						}else{
+	 							
+	 							console.log("Inside Else of expenses: "+reply[i]+": "+data.paidBy);
+	 							core.get_a_roomies_expense(reply[i],function(err,result_neg){
+	 								if(err)
+	 									throw err;
+	 								
+	 								
+	 								neg_share = (share * -1) + (parseInt(result_neg[data.paidBy]));
+	 								console.log("New negative Share:"+ result_neg["name"]+":"+data.paidBy+":"+neg_share);
+	 								core.set_roomie_expense(result_neg["name"],data.paidBy,neg_share,function(err,reply){
+	 									if(reply)
+	 										console.log('negative share added');
+	 								});	
+	 						 	});
 	 						}
 
 	 					}

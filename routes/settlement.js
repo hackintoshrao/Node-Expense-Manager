@@ -9,7 +9,7 @@ exports.settleExpense = function(req, res){
   					   throw err;
   				    else{
   					   console.log('Fetched the IndividualExpenses: '+ JSON.stringify(result));
-  					   res.render('settlement',{toSettle:JSON.stringify(result)});
+  					   res.render('settlement',{toSettle:result});
   				    }
   	   });
   			
