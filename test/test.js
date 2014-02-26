@@ -28,17 +28,7 @@ describe('COREAPI Testing', function (){
     
 
     
-    it('Testing fetching all user names should return the users list if seccessful', function(done) {
-
-            core.getUsers("users",function (err, result) {
-                if(err)
-                    return done(err);
-                assert.equal(result[0], "karthic");
-                done();
-            });
-     });
-
-    it('should return 1 if the user deletion is successful', function(done) {
+     it('should return 1 if the user deletion is successful', function(done) {
 
             core.delUser("users","karthic",function (err, result) {
                 if(err)

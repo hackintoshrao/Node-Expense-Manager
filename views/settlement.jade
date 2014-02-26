@@ -3,30 +3,35 @@ block content
   
   .container
     .row-fluid
-      #tobesettled.span30 
-        each field in toSettle
-          each val,key in field
-            if val == field.name
-              div.alert-info 
-                h2 Audit of #{field.name} - Expense to be paid or to getback from all other roomies 
-              hr(size="15px")
-            else
-              if val < 0
-                - var result = val*-1; 
-                div.alert.alert-danger(style="margin-left:50px;") Has to pay #{result} to #{key} 
+      #tobesettled.span30
+        if toSettle == 0 
+          .alert.alert-danger.span20
+            p(style="margin-left:100px") 
+              h1  All Expenses Settled!!!!!!!!!!!!
+        else
+          each field in toSettle
+            each val,key in field
+              if val == field.name
+                div.alert-info 
+                  h2 Audit of #{field.name} - Expense to be paid or to getback from all other roomies 
+                hr(size="15px")
               else
-                if val!=0
-                  div.alert.alert-success(style="margin-left:50px;") Has to get back #{val} from #{key}
+                if val < 0
+                  - var result = val*-1; 
+                  div.alert.alert-danger(style="margin-left:50px;") Has to pay #{result} to #{key} 
                 else
-                  div.alert.alert-warning(style="margin-left:50px;") Scores Settled with #{key} :D  
-          hr        
-    div.navbar.navbar-fixed-bottom  
-      footer.footer  
-        #buttonStrectch.span5
-          p
-            button#settle.btn.btn-danger.btn-sm(type="button") Settle Expenses
-          br
-          p 
-            button#home.btn.btn-success.btn-sm(type="button") Go To Home
+                  if val!=0
+                    div.alert.alert-success(style="margin-left:50px;") Has to get back #{val} from #{key}
+                  else
+                    div.alert.alert-warning(style="margin-left:50px;") Scores Settled with #{key} :D  
+            hr        
+      div.navbar.navbar-fixed-bottom  
+        footer.footer  
+          #buttonStrectch.span5
+            p
+              button#settle.btn.btn-danger.btn-sm(type="button") Settle Expenses
+            br
+            p 
+              button#home.btn.btn-success.btn-sm(type="button") Go To Home
   script(src="/javascripts/handleclick.js")
          
