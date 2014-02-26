@@ -1,8 +1,9 @@
 {
 	"roomies":[
 	{"username":"rao","mail":"kartronics85@yahoo.com"},
-	{"username":"iyer","mail":"libra.ashwin@gmail.com"},
-	{"username":"rohit","mail":"rohit@gmail.com"}
+	{"username":"iyer","mail":"karthicmystixz@gmail.com"},
+	{"username":"sameer","mail":"artoo.in"},
+	{"username":"rohit","mail":"kartronics85@gmail.com"}
 	],
 	"flag":false
 }

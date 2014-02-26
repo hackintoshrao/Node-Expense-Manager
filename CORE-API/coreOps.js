@@ -267,7 +267,7 @@ exports.set_roomie_expense = function(hashId,hashKey,value,callback){
         });
     });
 }
-exports.del_roomie_expense = function(hashId,hashKey,value,callback){
+exports.del_roomie_expense = function(hashId,hashKey,callback){
     client.select(1,function(err){
         if(err)
             return callback(err);

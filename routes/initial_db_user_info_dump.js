@@ -46,6 +46,13 @@ exports.initialize = function(){
 	 							});
 							}
 					}
+					function delete_user_info_CallBack(hashname,hashkey){
+						return function(callback){
+									core.delUserInfo(hashname,hashkey,function(err,result_core){
+	 								callback(err,result_core);
+	 							});
+							}
+					}
 					function add_user_info_CallBack(hashname,hashkey,value){
 						return function(callback){
 									core.addUserInfo(hashname,hashkey,value,function(err,result_core){
@@ -81,14 +88,14 @@ exports.initialize = function(){
 						}
 					}
 
-					for(var j=0;j<result.length;j++){
+					for(var j=0;j<roomies_info.roomies.length;j++){
 						
-							functions_to_call_in_sequence.push(create_user_hashes_CallBack(result[j],"name",result[j]));
+							functions_to_call_in_sequence.push(add_user_hashes_CallBack(roomies_info.roomies[j].username,"name",roomies_info.roomies[j].username));
 					}
 						
 					for(var j=0;j<result.length;j++){
   						
-						functions_to_call_in_sequence.push(delete_user_info_CallBack("userInfo",roomies_info.roomies[j].username));
+						functions_to_call_in_sequence.push(delete_user_info_CallBack("userInfo",result[j]));
   					}
   					for(var j=0;j<roomies_info.roomies.length;j++){
   						functions_to_call_in_sequence.push(add_user_info_CallBack("userInfo",roomies_info.roomies[j].username,roomies_info.roomies[j].mail));
