@@ -4,27 +4,35 @@ block content
   .container
     .row-fluid
       #sentMessage.span30
-        div.table-reponsive
-          table.table.table-bordered
-            caption expenses...
-              tr
-                th Amount 
-                th Why???
-                th paidBy
-                th when??
-                if info.length
-                  each field in info
-                    tr
-                      td
-                        font(color="#D66700") #{field.amount}
-                      td 
-                        font(color="#007F43") #{field.description}
-                      td 
-                        font(color="#780069") #{field.paidBy}
-                      td 
-                        font(color="#002D77") #{field.date}       
-  div.navbar.navbar-fixed-bottom     
-
+        if info 
+          div.table-reponsive
+            table.table.table-bordered
+              caption expenses...
+                tr
+                  th Amount 
+                  th Why???
+                  th paidBy
+                  th when??
+                  if info.length
+                    each field in info
+                      tr
+                        td
+                          font(color="#D66700") #{field.amount}
+                        td 
+                          font(color="#007F43") #{field.description}
+                        td 
+                          font(color="#780069") #{field.paidBy}
+                        td 
+                          font(color="#002D77") #{field.date}       
+        else
+          .alert.alert-danger.span20
+            p(style="margin-left:100px") 
+              h1  All Expenses Settled!!!!!!!!!!!!                  
+    div.navbar.navbar-fixed-bottom 
+      footer.footer
+        #homeButton.pull-right(style="margin-right:50px;")
+          a#home.btn.btn-success.btn-lg(style="margin-bottom:5px;width:100%;") Go To Home 
+   script $(document).ready(function(){$('#home').attr('href',"http://"+location.host+'/');});
 
 
 

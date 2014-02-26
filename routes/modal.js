@@ -4,6 +4,7 @@
  */
 var core = require('../CORE-API/coreOps.js');
 exports.showModal = function(req, res){
+  req.session.lastPage="";	
   res.render('modal');
 };
 exports.getModalData = function(req,res){

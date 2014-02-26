@@ -39,7 +39,7 @@ exports.initialize = function(){
 							}
 					}
 
-					function add_user_info_CallBack(hashname,hashkey,value){
+					function add_user_hashes_CallBack(hashname,hashkey,value){
 						return function(callback){
 									core.set_roomie_expense(hashname,hashkey,value,function(err,result_core){
 	 								callback(err,result_core);
@@ -73,6 +73,7 @@ exports.initialize = function(){
 					}
   					var functions_to_call_in_sequence = new Array();
   					for(var i=0;i<result.length;i++){
+  						functions_to_call_in_sequence.push(delete_user_hashes_CallBack(result[i],"name"));
 						for(var j=0;j<result.length;j++){
 							if(result[i]!==result[j]){
 								functions_to_call_in_sequence.push(delete_user_hashes_CallBack(result[i],result[j]));

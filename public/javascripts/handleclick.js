@@ -6,7 +6,7 @@ $(document).ready(function(){
   	});
   		$('#settle').click(function(){
   		var accept=confirm("Are you Sure you want to Settle all Expenes??");
-  		if(acept){
+  		if(accept){
 			var url="http://"+location.host+'/settlement/clear';
 			console.log('Settle clicked');
 			window.location=url;

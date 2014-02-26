@@ -43,16 +43,18 @@ app.configure('development', function(){
 initial_dump.initialize();
 
 app.get('/expenses',function(req,res){
- 
-    expenses.populateExpenses(function(err,reply,no_of_expenses){
-    console.log("total:"+ no_of_expenses);
-    res.render('populateExpenses',{info:reply});
+    if(!req.session.name)
+      res.redirect('modal/');
+    req.session.lastPage="";
+    expenses.populateExpenses(function(err,reply){
+        console.log(reply);
+        res.render('populateExpenses',{info:reply});
    
-    });
+   });
 
 });
 app.get('/', routes.index);
-app.get('/users', user.list);
+
 app.get('/modal',modal.showModal);
 app.post('/modal',modal.getModalData);
 app.get('/roomies',chatroom.renderroom);
@@ -60,6 +62,7 @@ app.get('/roomies',chatroom.renderroom);
 
 
 app.get('/settlement',settle_route.settleExpense);
+app.get('/settlement/clear',settle_route.clearAllExpenses)
 app.get('/about',info.about);
 
 

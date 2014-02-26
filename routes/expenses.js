@@ -49,6 +49,7 @@ exports.populateExpenses = function(callback_test){
 	core.get_no_of_expenses(function(err,result){
 		if(err)
 			callback_test(err);
+	if(result){	
 		function makeCallBack(hashId){
 			return function(callback){
 				core.readExpense(hashId,function(err,result_core){
@@ -76,12 +77,14 @@ exports.populateExpenses = function(callback_test){
 						return;
 					}
 					
-					callback_test(null,result,no_of_expenses);
+					callback_test(null,result);
 				}
 
 			)
-		}
-
-	});
+		 }
+      }else{
+      	callback_test(null,0);
+      }
+  });
 
 }
