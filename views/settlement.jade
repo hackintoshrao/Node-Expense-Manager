@@ -3,12 +3,30 @@ block content
   
   .container
     .row-fluid
-      #tobesettled.span30 #{toSettle.length}
+      #tobesettled.span30 
+        each field in toSettle
+          each val,key in field
+            if val == field.name
+              div.alert-info 
+                h2 Audit of #{field.name} - Expense to be paid or to getback from all other roomies 
+              hr(size="15px")
+            else
+              if val < 0
+                - var result = val*-1; 
+                div.alert.alert-danger(style="margin-left:50px;") Has to pay #{result} to #{key} 
+              else
+                if val!=0
+                  div.alert.alert-success(style="margin-left:50px;") Has to get back #{val} from #{key}
+                else
+                  div.alert.alert-warning(style="margin-left:50px;") Scores Settled with #{key} :D  
+          hr        
     div.navbar.navbar-fixed-bottom  
       footer.footer  
-        #buttonStrectch.span20
+        #buttonStrectch.span5
           p
-            button#settle.btn.btn-danger.btn-lg(type="button",style="margin-left:300px;margin-bottom:5px;width:100%;") Settle Expenses
-            button#home.btn.btn-success.btn-lg(style="margin-left:300px;margin-bottom:5px;width:100%;") Go To Home
+            button#settle.btn.btn-danger.btn-sm(type="button") Settle Expenses
+          br
+          p 
+            button#home.btn.btn-success.btn-sm(type="button") Go To Home
   script(src="/javascripts/handleclick.js")
          
